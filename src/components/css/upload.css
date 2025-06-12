@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #F9FAFB;
+  color: #1F2937;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo Styling */
+.navbar-logo {
+  font-weight: bold;
+  font-size: 24px;
+  color: #01595A;
+  padding: 10px 20px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Menu Navbar */
+.navbar-menu {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #374151;
+  padding: 15px 20px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.navbar-menu a.active {
+  color: #02585A;
+  font-weight: 700;
+}
+
+.navbar-menu a:hover {
+  color: #059669;
+}
+
+/* Avatar in Navbar */
+.navbar-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar-avatar:hover {
+  transform: scale(1.1);
+}
+
+/* Upload Section */
+.upload-section {
+  background-color: #E0F7F1;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 0px;
+
+  /* Flexbox untuk memusatkan elemen secara vertikal dan horizontal */
+  display: flex;
+  flex-direction: column;  /* Mengatur elemen dalam kolom */
+  justify-content: center;  /* Horizontal Centering */
+  align-items: center;      /* Vertical Centering */
+  height: 80vh;             /* Menjaga kotak upload berada di tengah halaman */
+}
+
+/* Teks Judul Upload */
+.upload-title {
+  font-size: 28px;
+  color: #00030b;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: -350px;
+  text-align: center;  /* Memastikan judul tetap di tengah */
+}
+
+/* Deskripsi Upload */
+.upload-description {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 30px;
+  text-align: center;  /* Memastikan deskripsi tetap di tengah */
+}
+
+/* Upload Box (Drag & Drop) */
+.upload-box {
+  border: 2px dashed #10B981;
+  width: 80%; /* Lebar kotak lebih kecil, sesuaikan jika perlu */
+  max-width: 500px; /* Menjaga kotak tidak terlalu besar di layar besar */
+  padding: 40px;
+  background-color: #F9FAFB;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Menyusun elemen secara vertikal */
+  justify-content: center;
+  gap: 15px; /* Jarak antara ikon dan teks */
+  transition: background-color 0.3s ease;
+}
+
+.upload-box:hover {
+  background-color: #D1F5EC;
+}
+
+.upload-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.upload-box i {
+  font-size: 36px;
+  color: #10B981;
+}
+
+.upload-box p {
+  font-size: 16px;
+  color: #6B7280;
+}
+
+.upload-box input[type="file"] {
+  display: none;
+}
+
+/* Browse button */
+.browse-button {
+  background-color: #10B981;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.browse-button:hover {
+  background-color: #059669;
+}
+
+
+/* Upload Box (Drag & Drop) */
+.upload-box {
+  border: 2px dashed #10B981; /* Mengurangi ketebalan border menjadi 1px */
+  width: 90%; /* Lebar kotak lebih kecil, sesuaikan jika perlu */
+  max-width: 500px; /* Menjaga kotak tidak terlalu besar di layar besar */
+  padding: 40px;
+  background-color: #F9FAFB;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center; /* Menyusun elemen secara vertikal */
+  justify-content: center;
+  gap: 15px; /* Jarak antara ikon dan teks */
+  transition: background-color 0.3s ease;
+}
+
+
+.upload-box:hover {
+  background-color: #D1F5EC;
+}
+
+.upload-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.upload-box i {
+  font-size: 36px;
+  color: #10B981;
+}
+
+.upload-box p {
+  font-size: 16px;
+  color: #6B7280;
+}
+
+.upload-box input[type="file"] {
+  display: none;
+}
+
+/* Browse button */
+.browse-button {
+  background-color: #10B981;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.browse-button:hover {
+  background-color: #059669;
+}
+
+/* Upload File button */
+.upload-button {
+  background-color: #10B981;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.upload-button:hover {
+  background-color: #059669;
+}
+
+/* Table Styling */
+.data-table {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.data-table .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  border: 1px solid #E5E7EB;
+  text-align: center;
+}
+
+.data-table th {
+  background-color: #10B981;
+  color: white;
+}
+
+.data-table td {
+  background-color: #F9FAFB;
+}
+
+/* Pagination Styling */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  background-color: #10B981;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+}
+
+.pagination button:hover {
+  background-color: #059669;
+}
+
+.pagination span {
+  font-size: 16px;
+  color: #4B5563;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 80px;
+  font-size: 14px;
+  color: #9CA3AF;
+}

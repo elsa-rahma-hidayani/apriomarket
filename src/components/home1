@@ -1,0 +1,54 @@
+import React from "react";
+import "./css/home.css";
+import homeImage from "./asset/home.png"; // Import gambar
+
+const AprioMarket = () => {
+  return (
+    <div className="container">
+      {/* Sidebar */}
+      <aside className="sidebar">
+        <div className="profile">
+          <img src="https://www.shareicon.net/data/128x128/2016/05/24/770117_people_512x512.png" alt="Avatar" />
+          <span>Hi! CompanyName</span>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/" className="active">🏠 Home</a></li>
+            <li><a href="/upload">⬆️ Upload</a></li>
+            <li><a href="#">📊 Data</a></li>
+            <li><a href="login">⚙️ Promotion</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+        <section className="header">
+        <header>
+          <h1>AprioMarket</h1>
+        </header>
+        </section>
+        
+        <main className="main-content">
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero-content">
+            <h2>Welcome to AprioMarket</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
+            <button className="get-started"><a href="/register">Get Started</a></button>
+          </div>
+          <img src={homeImage} alt="Home Illustration" className="hero-image" />
+        </section>
+
+
+        {/* Card Section */}
+        <section className="cards">
+          <div className="card">Lorem Ipsum</div>
+          <div className="card">Lorem Ipsum</div>
+          <div className="card">Lorem Ipsum</div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+export default AprioMarket;

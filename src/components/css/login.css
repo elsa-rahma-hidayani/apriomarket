@@ -1,0 +1,152 @@
+/* Reset default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+}
+
+/* Main container */
+.login-container {
+  display: flex;
+  min-height: 90vh;
+  background-color: #f7f9fc;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Left side (image) */
+.login-left {
+  flex: 1;
+  background: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image {
+  max-width: 80%;
+  height: auto;
+}
+
+/* Right side (form) */
+.login-right {
+  flex: 1;
+  padding: 50px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-right h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.login-right p {
+  margin-bottom: 30px;
+  color: #6b7280;
+}
+
+/* Form input */
+.login-form input[type="email"],
+.login-form input[type="password"],
+.password-container input {
+  width: 100%;
+  padding: 14px 40px 14px 14px; /* top right bottom left */
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* Password field with eye button */
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 18px;
+  padding: 0;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+/* Checkbox and forgot link */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.remember-forgot a {
+  text-decoration: none;
+  color: #6d28d9;
+}
+
+/* Login button */
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background: #6d28d9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background: #5b21b6;
+}
+
+/* Footer */
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #6d28d9;
+  text-decoration: none;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .login-left {
+    display: none; /* Hide image section on small screen */
+  }
+
+  .login-right {
+    padding: 30px;
+  }
+}

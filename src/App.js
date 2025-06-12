@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { FileProvider } from "./context/FileContext";  // Gunakan FileProvider
+import AprioMarket from "./components/home";
+import Upload from "./components/upload";
+import Register from "./components/register";
+import Login from "./components/login";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FileProvider> {/* Bungkus semua dengan FileProvider */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<AprioMarket />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>}/>
+        </Routes>
+      </Router>
+    </FileProvider>
   );
 }
 
