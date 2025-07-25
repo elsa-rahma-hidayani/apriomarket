@@ -1,229 +1,185 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'; 
-import profile from './asset/profile.png'; 
-import uploadLogo from './asset/upload.png'; 
-import Papa from 'papaparse'; 
-import * as XLSX from 'xlsx'; 
-import './css/upload.css'; 
+import { Link, useLocation } from 'react-router-dom';
+import { useData } from '../context/DataContext'; // <-- Menggunakan Context
+import './css/upload.css';
+import logoPutih from './asset/logo_putih.png';
+import profileIcon from './asset/profile.png';
+
+// Komponen Pagination untuk pratinjau data
+const Pagination = ({ currentPage, totalPages, onPageChange, dataLength, rowsPerPage }) => {
+    if (dataLength <= rowsPerPage) {
+        return null;
+    }
+    return (
+        <div className="pagination-controls">
+            <button onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+        </div>
+    );
+};
 
 function Upload() {
-  const location = useLocation(); 
-  const currentPath = location.pathname;
+    const location = useLocation();
+    // Ambil state dan fungsi dari Context
+    const { fileName, previewData, loading, error, handleFileChange, handleAnalyze } = useData();
 
-  const [file, setFile] = useState(null); 
-  const [tableData, setTableData] = useState([]); 
-  const [currentPage, setCurrentPage] = useState(1); 
-  const [rowsPerPage, setRowsPerPage] = useState(10);  
+    // State lokal hanya untuk form di halaman ini
+    const [minSupport, setMinSupport] = useState(0.1);
+    const [minConfidence, setMinConfidence] = useState(0.5);
+    const [isDragOver, setIsDragOver] = useState(false);
+    const [previewCurrentPage, setPreviewCurrentPage] = useState(1);
+    const rowsPerPage = 15; // Jumlah baris per halaman untuk pratinjau data
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
+    // Fungsi pembungkus untuk memanggil handleFileChange dari context
+    const onFileSelect = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            handleFileChange(e.target.files[0]);
+        }
+    };
 
-    // Process file immediately after selection
-    if (selectedFile) {
-      if (selectedFile.type === "application/vnd.ms-excel" || selectedFile.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const binaryStr = e.target.result;
-          const workbook = XLSX.read(binaryStr, { type: "binary" });
-          const firstSheetName = workbook.SheetNames[0];
-          const worksheet = workbook.Sheets[firstSheetName];
-          let jsonData = XLSX.utils.sheet_to_json(worksheet);
+    const onFileDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragOver(false);
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFileChange(e.dataTransfer.files[0]);
+        }
+    };
+    
+    const handleDragEvents = (e) => { e.preventDefault(); e.stopPropagation(); setIsDragOver(e.type === 'dragover' || e.type === 'dragenter'); };
 
-          // Format the date to dd/mm/yy and process "Qty"
-          jsonData = jsonData.map(row => {
-            if (row['Tanggal Transaksi']) {
-              row['Tanggal Transaksi'] = formatDate(row['Tanggal Transaksi']);
-            }
+    const getNavLinkClass = (path) => {
+        return location.pathname === path ? 'nav-link active' : 'nav-link';
+    };
 
-            // Process the "Qty" column that contains comma-separated values
-            if (row['Qty']) {
-              row['Qty'] = processQty(row['Qty']);
-            }
+    // Logika paginasi untuk pratinjau data
+    const totalPreviewPages = Math.ceil(previewData.length / rowsPerPage);
+    const indexOfLastPreviewRow = previewCurrentPage * rowsPerPage;
+    const indexOfFirstPreviewRow = indexOfLastPreviewRow - rowsPerPage;
+    const currentPreviewRows = previewData.slice(indexOfFirstPreviewRow, indexOfLastPreviewRow);
 
-            return row;
-          });
+    return (
+        <div className="page-container upload-page">
+            {/* ====================== HEADER====================*/}
+            <header className="nav-container">
+                <nav className="nav-bar">
+                    {/* Logo Section */}
+                    <Link to="/" className="nav-logo">
+                        <img src={logoPutih} alt="AprioMarket Logo" className="logo-putih-img" />
+                        <span className="nav-brand-text">AprioMarket</span>
+                    </Link>
 
-          setTableData(jsonData);  // Set all data without pagination
-        };
-        reader.readAsBinaryString(selectedFile);
-      } else if (selectedFile.type === "text/csv") {
-        Papa.parse(selectedFile, {
-          complete: function (result) {
-            let jsonData = result.data;
+                    {/* Menu Links Section */}
+                    <div className="nav-menu-frame">
+                        <Link to="/" className="nav-link">Home</Link>
+                        <Link to="/upload" className="nav-link">Upload Data</Link>
+                        <Link to="/promotion" className="nav-link">Promotion</Link>
+                        <Link to="/profile" className="nav-profile-link">
+                        <img src={profileIcon} alt="Profile" className="nav-profile-icon" />
+                    </Link>
+                    </div>
+                </nav>
+            </header>
+            {/* ==================================================*/}
+            
+            <main className="upload-main-content">
+                <aside className="left-panel">
+                    <div className="left-panel-main">
+                        <div className="upload-card">
+                            <h3>1. Unggah Data Transaksi</h3>
+                            <div className={`upload-box ${isDragOver ? 'drag-over' : ''}`}
+                                onDragEnter={handleDragEvents}
+                                onDragOver={handleDragEvents}
+                                onDragLeave={handleDragEvents}
+                                onDrop={onFileDrop}
+                                onClick={() => document.getElementById('file-input').click()}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                <p>Tarik & Lepas file di sini</p>
+                                <input id="file-input" type="file" accept=".csv, .xls, .xlsx" onChange={onFileSelect} hidden />
+                            </div>
+                            {fileName && <div className="file-confirmation"><span>{fileName}</span></div>}
+                        </div>
 
-            // Format the date to dd/mm/yy and process "Qty"
-            jsonData = jsonData.map(row => {
-              if (row['Tanggal Transaksi']) {
-                row['Tanggal Transaksi'] = formatDate(row['Tanggal Transaksi']);
-              }
-
-              // Process the "Qty" column that contains comma-separated values
-              if (row['Qty']) {
-                row['Qty'] = processQty(row['Qty']);
-              }
-
-              return row;
-            });
-
-            setTableData(jsonData);  // Set all data without pagination
-          },
-        });
-      }
-    }
-  };
-
-  const formatDate = (date) => {
-    // If the date is a number (Excel serial date format)
-    let parsedDate;
-    if (!isNaN(date)) {
-      // Convert Excel serial date to JavaScript Date
-      parsedDate = new Date((date - 25569) * 86400 * 1000); // Adjust for Excel date system
-    } else {
-      parsedDate = new Date(date);
-    }
-
-    if (isNaN(parsedDate)) {
-      return date; // Return as-is if still invalid
-    }
-
-    const day = ("0" + parsedDate.getDate()).slice(-2);
-    const month = ("0" + (parsedDate.getMonth() + 1)).slice(-2);
-    const year = parsedDate.getFullYear().toString().slice(-2);
-    return `${day}/${month}/${year}`;
-  };
-
-  const processQty = (qty) => {
-    // Ensure "Qty" is treated as a string with comma-separated numbers
-    if (qty) {
-      // Remove any non-numeric characters (e.g., spaces) and split by comma
-      const qtyArray = qty.split(',').map(item => {
-        const num = parseInt(item.trim()); // Remove any extra spaces and convert to number
-        return isNaN(num) ? 0 : num; // Ensure the value is a valid number or default to 0
-      });
-      return qtyArray; // Return the array of quantities
-    }
-    return [0]; // Default to an array with 0 if "Qty" is missing or invalid
-  };
-  
-
-  const paginateData = (data, page) => {
-    const startIndex = (page - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    return data.slice(startIndex, endIndex);
-  };
-
-  const changePage = (newPage) => {
-    const totalPages = Math.ceil(tableData.length / rowsPerPage);  // Total number of pages
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-    }
-  };
-
-  const handleRowsPerPageChange = (event) => {
-    setRowsPerPage(Number(event.target.value));
-    setCurrentPage(1);  // Reset to first page
-  };
-
-  return (
-    <div>
-      {/* Navbar */}
-      <nav className="navbar container">
-        <div className="navbar-logo">
-          AprioMarket
+                        <div className="upload-card-parameter">
+                            <h4>2. Atur Parameter Analisa</h4>
+                            <div style={{ marginBottom: '15px' }}>
+                                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontFamily: "'Inria Sans', sans-serif" }}>Minimum Support</label>
+                                <input
+                                type="number"
+                                step="0.01"
+                                value={minSupport}
+                                onChange={(e) => setMinSupport(parseFloat(e.target.value))}
+                                disabled={loading}
+                                style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }}
+                                />
+                                <small style={{ fontSize: '12px', color: '#666', marginTop: '5px', display: 'block', fontFamily: "'Inria Sans', sans-serif" }}>*Nilai antara 0 dan 1 (contoh: 0.1 untuk 10%)</small>
+                            <div style={{ marginBottom: '20px' }}>
+                                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontFamily: "'Inria Sans', sans-serif" }}>Minimum Confidence</label>
+                                <input
+                                type="number"
+                                step="0.01"
+                                value={minConfidence}
+                                onChange={(e) => setMinConfidence(parseFloat(e.target.value))}
+                                disabled={loading}
+                                style={{ width: '100%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }}
+                                />
+                                <small style={{ fontSize: '12px', color: '#666', marginTop: '5px', display: 'block', fontFamily: "'Inria Sans', sans-serif" }}>*Nilai antara 0 dan 1 (contoh: 0.5 untuk 50%)</small>
+                            </div>                      
+                            </div>
+                        </div>
+                    </div>
+                    <button className="btn-primary" onClick={() => handleAnalyze(minSupport, minConfidence)} disabled={loading || previewData.length === 0}>
+                        {loading ? 'Menganalisa...' : 'Mulai Analisa'}
+                    </button>
+                </aside>
+                <section className="right-panel">
+                    {error && <div className="error-message">{error}</div>}
+                    
+                    {previewData.length > 0 ? (
+                        <div className="preview-card upload-card">
+                            <h2>Pratinjau Data</h2>
+                            <p className="summary-text">Menampilkan baris {indexOfFirstPreviewRow + 1} sampai {Math.min(indexOfLastPreviewRow, previewData.length)} dari {previewData.length} data.</p>
+                            <div className="table-container">
+                                <table className="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Transaksi</th>
+                                            <th>Nama Produk</th>
+                                            <th>Qty</th>
+                                            <th>Tanggal Transaksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {currentPreviewRows.map((row, index) => (
+                                            <tr key={`${row['ID Transaksi']}-${index}`}>
+                                                <td>{row['ID Transaksi']}</td>
+                                                <td>{row['Nama Produk']}</td>
+                                                <td>{row['Qty']}</td>
+                                                <td>{row['Tanggal Transaksi']}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <Pagination
+                                currentPage={previewCurrentPage}
+                                totalPages={totalPreviewPages}
+                                onPageChange={setPreviewCurrentPage}
+                                dataLength={previewData.length}
+                                rowsPerPage={rowsPerPage}
+                            />
+                        </div>
+                    ) : (
+                        <div className="placeholder-view upload-card">
+                            <h2>Mulai Analisa Pola Belanja</h2>
+                            <p>Unggah data transaksi Anda di panel sebelah kiri untuk menemukan rekomendasi promosi.</p>
+                        </div>
+                    )}
+                </section>
+            </main>
         </div>
-        <div className="navbar-menu">
-          <Link to="/" className={currentPath === '/' ? 'active' : ''}>Home</Link>
-          <Link to="/upload" className={currentPath === '/upload' ? 'active' : ''}>Upload Data</Link>
-          <Link to="/promotions" className={currentPath === '/promotions' ? 'active' : ''}>Promotions</Link>
-          <Link to="/about" className={currentPath === '/about' ? 'active' : ''}>About</Link>
-          <img src={profile} alt="Avatar" className="navbar-avatar" />
-        </div>
-      </nav>
-
-      {/* Upload Section */}
-      <section className="upload-section container">
-        <h2 className="upload-title">Upload Your Data</h2>
-        <p className="upload-description">Silakan unggah file data penjualan Anda untuk memulai analisis.</p>
-        <div className="upload-area">
-          <div className="upload-box">
-            <img src={uploadLogo} alt="Upload Logo" className="upload-logo" />
-            <i className="fa fa-cloud-upload"></i>
-            <p>Drag and Drop your file here</p>
-            <p className="or-text">or</p>
-            <input 
-              id="file-upload" 
-              type="file" 
-              accept=".csv, .xls, .xlsx" 
-              onChange={handleFileChange} 
-              className="file-input" 
-              required 
-            />
-            <button 
-              type="button" 
-              className="browse-button" 
-              onClick={() => document.getElementById('file-upload').click()}
-            >
-              Browse
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Tabel Data Upload */}
-      {tableData.length > 0 && (
-        <section className="data-table container">
-          <h3>Uploaded Data</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Produk</th>
-                <th>Qty</th>
-                <th>Tanggal Transaksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginateData(tableData, currentPage).map((row, index) => (
-                <tr key={index}>
-                  <td>{row['ID Transaksi']}</td>
-                  <td>{row['Nama Produk']}</td>
-                  <td>{Array.isArray(row['Qty']) ? row['Qty'].join(', ') : row['Qty']}</td> {/* Ensure qty is an array */}
-                  <td>{row['Tanggal Transaksi']}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Pagination */}
-          <div className="pagination">
-            <button onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
-              &lt; Previous
-            </button>
-            <span>{currentPage} of {Math.ceil(tableData.length / rowsPerPage)}</span>
-            <button onClick={() => changePage(currentPage + 1)} disabled={currentPage === Math.ceil(tableData.length / rowsPerPage)}>
-              Next &gt;
-            </button>
-          </div>
-
-          {/* Rows per page selection */}
-          <div className="rows-per-page">
-            <label htmlFor="rowsPerPage">Rows per page: </label>
-            <select id="rowsPerPage" value={rowsPerPage} onChange={handleRowsPerPageChange}>
-              <option value={10}>10</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-            </select>
-          </div>
-        </section>
-      )}
-
-      {/* Footer */}
-      <footer>
-        © 2025 AprioMarket. All rights reserved.
-      </footer>
-    </div>
-  );
+    );
 }
 
 export default Upload;

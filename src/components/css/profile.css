@@ -1,0 +1,653 @@
+/* General Page Setup */
+.profile-page {
+    background: #FFFFFF;
+    min-height: 100vh;
+    padding: 90px 40px 40px; /* Space for a fixed navbar */
+    position: relative;
+    overflow: hidden; /* Hides parts of background shapes that go off-screen */
+    font-family: 'Inria Sans', sans-serif;
+}
+
+/* Decorative Background Elements */
+.profile-page::before,
+.profile-page::after {
+    content: '';
+    position: absolute;
+    background: rgba(159, 214, 210, 0.5);
+    border-radius: 500px;
+    z-index: 0;
+}
+
+.profile-page::before {
+    width: 848px;
+    height: 151px;
+    left: -161px;
+    top: 61px;
+    transform: rotate(-56.93deg);
+}
+
+.profile-page::after {
+    width: 451px;
+    height: 151px;
+    left: -101px;
+    top: 629px;
+    transform: rotate(-56.93deg);
+}
+
+.profile-content-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* --- Left Sidebar --- */
+.profile-sidebar {
+    flex: 0 0 350px;
+}
+
+.profile-card {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-card h3 {
+    text-align: left;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 15px;
+}
+
+/* --- Styles for Default View --- */
+.profile-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.profile-icon-large {
+    font-size: 96px;
+    color: #333;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin-bottom: 25px;
+}
+
+.profile-info-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    font-family: 'Inria Sans', sans-serif;
+    color: #000000;
+    font-weight: 400;
+}
+
+.profile-info-item p {
+    margin: 0;
+}
+
+.profile-info-item .edit-icon {
+    font-size: 15px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.profile-info-item .edit-icon:hover {
+    color: #206679;
+}
+
+/* --- Styles for Editing View --- */
+.profile-edit-box {
+    box-sizing: border-box;
+    width: 300px;
+    height: 280px;
+    background: #FFFFFF;
+    border: 2px dashed #052659;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    flex-grow: 1;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.edit-back-icon {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 20px;
+    color: #444;
+    cursor: pointer;
+}
+
+/* KELAS BARU UNTUK GRUP FORM */
+.edit-form-group {
+    width: 250px; /* Lebar sama dengan input */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* <-- INI AKAN MERATAKAN TOMBOL KE KANAN */
+    gap: 15px; /* Jarak antara input dan tombol */
+}
+
+
+.edit-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0 15px;
+    color: #000000;
+}
+
+.edit-ok-button {
+    width: 80px;
+    height: 30px;
+    background: #206679;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.edit-ok-button:hover {
+    background-color: #1a5463;
+}
+
+/* --- Style for Logout Button in Card --- */
+.logout-button-card {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: auto; /* Pushes it to the bottom */
+    padding: 10px;
+    width: 100%;
+}
+
+.logout-button-card:hover {
+    color: #000000;
+}
+
+/* --- Main Content --- */
+.profile-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Action Cards */
+.action-cards-container {
+    display: flex;
+    gap: 25px;
+}
+
+.action-card {
+    flex: 1;
+    background: #206679;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    height: 200px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+}
+
+.action-icon {
+    font-size: 70px;
+    margin-bottom: 25px;
+}
+
+.data-count {
+    font-size: 90px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.action-card p {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Recent Uploads Section */
+.recent-uploads-section {
+    width: 100%;
+}
+
+.recent-uploads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Fixed invalid value */
+    margin-top: -15px;
+}
+
+.recent-uploads-header h2 {
+    font-size: 20px;
+    font-weight: 200;
+    color: #206679;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Uploads Table */
+.uploads-table {
+    margin-top: -20px;
+    background: #206679;
+    border-radius: 10px;
+    padding: 20px;
+    color: #FFFFFF;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 10px;
+    font-size: 16px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.table-row {
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #206679;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.time-and-action {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.view-button {
+    background: rgba(32, 102, 121, 0.5);
+    border: none;
+    border-radius: 11px;
+    width: 35px;
+    height: 30px;
+    color: #206679;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Profile Icon Styling in Navbar */
+.nav-profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-profile-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --- Popups, etc --- */
+/* ========================= Reset Password Section ========================= */
+
+/* -- Popup Styles -- */
+
+
+
+/* Lapisan latar belakang gelap */
+
+.popup-overlay {
+
+ position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.6);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+
+}
+
+
+
+/* Kotak popup utama (menggunakan properti dari Anda) */
+
+.popup-container {
+position: relative; /* Diperlukan untuk posisi tombol close */
+width: 500px;
+max-width: 90%;
+min-height: 350px; /* Gunakan min-height agar bisa menyesuaikan konten */
+background: #FFFFFF;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+padding: 40px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+
+}
+
+
+
+.popup-container h2 {
+margin-top: 0;
+margin-bottom: 25px;
+color: #333;
+font-size: 24px;
+
+}
+
+
+
+.popup-form {
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px; /* Jarak antar elemen form */
+
+}
+
+
+
+.popup-form input {
+width: 100%;
+padding: 12px 15px;
+border: 1px solid #ccc;
+border-radius: 8px;
+font-size: 16px;
+
+}
+
+
+
+.popup-form .forgot-password-link {
+align-self: flex-end; /* Posisikan ke kanan */
+margin-top: -5px;
+margin-bottom: 15px;
+font-size: 14px;
+color: #555;
+text-decoration: none;
+
+}
+
+
+
+.popup-form .forgot-password-link:hover {
+text-decoration: underline;
+
+}
+
+
+
+.popup-submit-btn {
+width: 100%;
+padding: 12px;
+background-color: #2D6A74; /* Warna teal dari gambar */
+color: white;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.2s;
+
+}
+
+
+
+.popup-submit-btn:hover {
+background-color: #255861;
+
+}
+
+
+
+/* Tombol close (X) */
+
+.popup-close-btn {
+position: absolute;
+top: 15px;
+right: 15px;
+background: none;
+border: none;
+font-size: 20px;
+color: #888;
+cursor: pointer;
+
+}
+
+
+
+/* Pesan status (loading, sukses, error) */
+
+.popup-message {
+margin-top: 15px;
+font-size: 14px;
+color: #333;
+
+}
+
+
+
+/* Membuat card bisa diklik */
+
+.action-card {cursor: pointer;transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+}
+
+
+
+.action-card:hover {transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+
+}
+
+
+
+/* -- Style untuk Show/Hide Password -- */
+
+
+
+.password-input-container {
+position: relative;
+width: 100%;
+
+}
+
+
+
+/* Beri sedikit ruang di kanan input untuk ikon */
+
+.password-input-container input {
+padding-right: 45px;
+
+}
+
+
+
+.password-toggle-icon {
+position: absolute;
+top: 50%;
+right: 15px;
+transform: translateY(-50%);
+color: #888;
+cursor: pointer;
+
+}
+
+
+/* ========================= DELETE ACCOUNT ========================= */
+
+/* -- Styles for Delete Account Popup -- */
+
+.popup-container.delete-popup {
+    width: 400px;
+    min-height: 250px;
+    justify-content: center;
+    gap: 20px; /* Jarak antar elemen */
+    padding: 30px;
+}
+
+
+
+.delete-popup h2 {
+
+ font-family: 'Inria Sans', sans-serif;
+
+ font-weight: 700;
+
+ font-size: 20px;
+
+ color: #000000;
+
+ margin: 0;
+
+}
+
+
+
+.delete-popup p {
+
+ font-family: 'Inria Sans', sans-serif;
+
+ font-weight: 400;
+
+ font-size: 14px;
+
+ line-height: 1.2;
+
+ text-align: center;
+
+ color: #000000;
+
+ max-width: 250px; /* Batasi lebar teks agar tidak terlalu memanjang */
+
+ margin: 0;
+
+}
+
+
+
+.popup-actions {
+
+ display: flex;
+
+ gap: 20px; /* Jarak antar tombol */
+
+ margin-top: 15px;
+
+}
+
+
+
+.popup-button {
+
+ width: 100px;
+
+ height: 40px;
+
+ border-radius: 10px;
+
+ border: none;
+
+ background-color: #2D6A74; /* Menggunakan warna teal dari tema */
+
+ color: #FFFFFF;
+
+ font-family: 'Inria Sans', sans-serif;
+
+ font-weight: 700;
+
+ font-size: 16px;
+
+ cursor: pointer;
+
+ display: flex;
+
+ justify-content: center;
+
+ align-items: center;
+
+ transition: background-color 0.2s;
+
+}
+
+
+
+.popup-button:hover {
+
+ background-color: #255861;
+
+}
+

@@ -1,0 +1,865 @@
+/* src/css/promotion.css (Lengkap & Terbaru) */
+
+/* =============== GLOBAL & NAVBAR STYLES =============== */
+.promotion-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background-color: #FFFFFF;
+  z-index: 1000;
+}
+.nav-bar {
+     width: calc(100% - 100px);
+  max-width: 1240px;
+  height: 55px;
+  margin: 20px auto;
+  background: #052659;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+.logo-putih-img {
+    width: 45px;
+    height: 42px;
+}
+.nav-brand-text {
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+.nav-menu-frame {
+    display: flex;
+    gap: 37px;
+}
+.nav-link {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s;
+}
+.nav-link.active {
+    font-weight: 700;
+    border-bottom-color: #FFFFFF;
+}
+
+/* =============== MAIN CONTENT LAYOUT =============== */
+.promotion-main-content {
+    padding: 120px 50px 50px 50px;
+}
+.top-content-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+.full-width-wrapper {
+    margin-top: 30px;
+}
+.left-panel {
+    flex: 0 0 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: sticky;
+    top: 120px;
+}
+.right-panel {
+    flex: 1;
+}
+
+/* =============== LEFT PANEL CARDS =============== */
+.summary-card {
+    margin-top: -30px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: 250px;
+}
+
+.summary-card-parameter {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: 250px;
+    margin-top: -35px;
+    font-family: 'inria-sans', sans-serif;
+}
+
+.summary-card-parameter h4 {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #052659;
+    margin-bottom: 20px;
+}
+
+.summary-card h4 {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #052659;
+    margin-bottom: 15px;
+}
+.file-display {
+    margin-top: 50px;
+    background-color: #e6f4ea;
+    color: #3d8b4f;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+}
+.param-display {
+    margin-bottom: 10px;
+}
+.param-display label {
+    font-family: 'Inria Sans';
+    font-size: 14px;
+    color: #666;
+}
+.param-display p {
+    font-family: 'Inria Sans';
+    font-weight: 700;
+    font-size: 16px;
+    color: #052659;
+    margin-top: 5px;
+}
+
+
+/* =============== RIGHT PANEL & FULL-WIDTH CARDS =============== */
+/* --- 1. Association Results Card (.results-card) --- */
+.results-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 585px;
+    margin-top: -30px;
+}
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+.results-title h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #042457;
+}
+.results-title .summary-text {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #333;
+}
+.search-container {
+    flex-shrink: 0;
+}
+.search-container input {
+    width: 300px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inria Sans', sans-serif;
+}
+.search-container input:focus {
+    outline: none;
+    border-color: #052659;
+    box-shadow: 0 0 0 2px rgba(5, 38, 89, 0.2);
+}
+.search-summary {
+    font-size: 12px;
+    color: #555;
+    margin-top: 8px;
+    font-style: italic;
+    text-align: right;
+}
+.search-summary strong {
+    font-weight: 700;
+}
+
+/* --- 2. Sales Dashboard Section --- */
+.dashboard-card {
+    width: 100%;
+    max-width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+.dashboard-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+    color: #052659;
+    margin: 0 0 20px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.dashboard-content {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+.dashboard-left {
+    flex: 0 0 645px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 25px;
+}
+.chart-container-bar {
+    flex-grow: 1;
+    position: relative;
+}
+.chart-subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: auto;
+    padding-top: 15px;
+}
+.dashboard-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.dominant-product-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(5, 38, 89, 0.05);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 15px;
+    color: #052659;
+}
+.dominant-product-card p {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.3;
+}
+.kpi-and-pie-container {
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+}
+.chart-container-pie {
+    flex: 0 0 305px;
+    height: 390px;
+    position: relative;
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kpi-container {
+    flex: 0 0 305px;
+    height: 390px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 20px 15px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+}
+.kpi-box {
+    background: #7DA0CA;
+    color: #052659;
+    border-radius: 30px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    width: 112px;
+    height: 106px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+.kpi-box::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    background: #C1E8FF;
+    border-radius: 30px;
+    z-index: -1;
+}
+.kpi-box span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+}
+.kpi-box label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.2;
+    margin-top: 5px;
+    display: block;
+}
+
+/* --- 3. Low Sales Recommendation Card (.low-sales-rec-card) --- */
+.low-sales-rec-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-top: 30px;
+    width: 100%;
+}
+.low-sales-rec-card h3 {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #052659;
+    margin: 0 0 20px 0;
+}
+.rec-flow-container {
+    background-color: #052659;
+    border-radius: 15px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rec-flow-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #FFFFFF;
+}
+.rec-flow-icon-circle {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.rec-flow-text label {
+    display: block;
+    font-size: 13px;
+    font-weight: 300;
+    color: #a7c0de;
+    margin-bottom: 4px;
+}
+.rec-flow-text span {
+    font-size: 16px;
+    font-weight: 700;
+}
+.rec-flow-arrow {
+    color: #a7c0de;
+    font-size: 24px;
+}
+
+/* =============== TABLE & PROMOTION STYLES =============== */
+.table-container { 
+    overflow-x: visible; 
+    flex-grow: 1;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th, .data-table td {
+    padding: 5px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: 'Inria Sans';
+}
+.data-table th {
+    background-color: #f4f7f6;
+    font-weight: 700;
+    color: #042457;
+}
+.data-table td {
+    font-size: 14px;
+    vertical-align: middle;
+}
+.data-table .confidence-value {
+    font-weight: 700;
+    color: #000;
+}
+.promo-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.promo-badge.bundling { background-color: #9FD6D2; }
+.promo-badge.bogo { background-color: #052659; }
+.promo-badge.tebus-murah { background-color: #206679; }
+.promo-badge.diskon { background-color: #7DA0CA; }
+.promo-badge.buy-1-get-1 { background-color: #052659; }
+.promo-text {
+    font-size: 14px;
+    margin: 0;
+    color: #666;
+}
+/* =============== PAGINATION CONTROLS =============== */
+.pagination-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: none; /* Tambahkan baris ini untuk menghilangkan garis di atas */
+}
+.pagination-controls button {
+    /* 'border-top: none;' bisa dihapus dari sini jika tidak diperlukan */
+    padding: 8px 15px;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #052659;
+    color: #fff;
+}
+.pagination-controls button:disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* promotion.css (HANYA TAMBAHKAN KODE DI BAWAH INI) */
+
+/* =============== GAYA UNTUK LEGEND KUSTOM PIE CHART =============== */
+
+/* Tata letak baru di dalam container pie chart */
+.chart-container-pie {
+    display: flex;
+    flex-direction: column; /* Atur chart dan legend secara vertikal */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pie-wrapper {
+    width: 100%;
+    height: 75%; /* Beri ruang 75% untuk pie chart */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pie-wrapper p {
+    font-size: 14px;
+    color: #666;
+}
+
+.custom-legend-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 15px;
+    width: 100%;
+    height: 25%; /* Beri ruang 25% untuk legend */
+    border-top: 1px solid #f0f0f0;
+    margin-top: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.legend-item input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.legend-color-swatch {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+.legend-item label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* =============== STYLES FOR HEADER PROMO DROPDOWN =============== */
+
+/* Style untuk sel header agar dropdown bisa diposisikan */
+.promo-header-cell {
+    position: relative;
+    vertical-align: middle;
+}
+
+/* Kontainer untuk Teks "Rekomendasi Promosi" + Ikon */
+.promo-header-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Jarak antara teks dan ikon */
+    cursor: pointer;
+    display: inline-flex; /* Agar tidak mengambil lebar penuh sel */
+}
+
+/* Ikon Dropdown Biru Bundar */
+.header-dropdown-icon {
+    background-color: #0dcaf0; /* Warna biru cyan seperti di gambar */
+    color: white;
+    border-radius: 50%;
+    width: 24px;   /* Lebar ikon */
+    height: 24px;  /* Tinggi ikon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Ukuran panah di dalam ikon */
+}
+
+/* Menu Dropdown yang Muncul */
+.header-dropdown-menu {
+    position: absolute;
+    top: 100%; /* Posisi tepat di bawah header */
+    left: 0;
+    background-color: #ffffff;
+    min-width: 220px; /* Lebar menu */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    z-index: 20;
+    margin-top: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Item di dalam Menu Dropdown */
+.header-dropdown-item {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 400; /* Mengatur ulang ketebalan font */
+    text-align: left;
+}
+
+.header-dropdown-item:hover {
+    background-color: #f4f7f6;
+    color: #052659;
+}
+
+/* =============== NEW: PRODUCT PAIRING & RECOMMENDATION SECTION =============== */
+
+.product-pairing-section {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
+
+/* --- Left Panel: Frequently Bought Together --- */
+.often-bought-card {
+    margin-top: 20px;
+    flex: 0 0 400px; /* Fixed width as requested */
+    height: 510px; /* Fixed height as requested */
+    background: #EAF3FB; /* Light blue background from image */
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.often-bought-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #052659;
+    margin: 0 0 20px 0;
+}
+
+.product-pairs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.pair-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #FFFFFF;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.pair-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.pair-details {
+    flex-grow: 1;
+}
+
+.pair-details p {
+    margin: 0;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.pair-details p:first-child {
+    font-weight: 700;
+}
+
+.pair-transactions {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #052659;
+    white-space: nowrap;
+}
+
+/* --- Right Panel: Low-Sales Interactive --- */
+.low-sales-interactive-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.low-sales-interactive-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #052659;
+    margin: 0;
+}
+
+.low-sales-products-selector {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.low-sales-products-selector button {
+    background-color: #7DA0CA;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.low-sales-products-selector button:hover {
+    background-color: #052659;
+}
+
+/* --- Interactive Flow Styling --- */
+.interactive-flow-container {
+    background-color: #2E568C; /* Darker blue from image */
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    color: white;
+}
+
+.flow-step-box {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    width: 200px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flow-step-box.recommendation {
+    background-color: #F0F0F0;
+    color: #052659;
+}
+
+.flow-step-box span {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.flow-step-box p {
+    margin: 5px 0 0 0;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.flow-step-box p strong {
+    font-weight: 700;
+}
+
+.flow-icon {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 28px;
+    height: 28px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.flow-arrow {
+    font-size: 28px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Small correction for dropdown icon rotation */
+.header-dropdown-icon.open {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+}
+
+.header-dropdown-icon {
+    transition: transform 0.3s;
+}
+
+/* ==========================================================================
+    FOOTER SECTION
+   ========================================================================== */
+.footer-container {
+    position: absolute;
+    width: 1440px;
+    height: 250px;
+    left: 0px;
+    top: 1900px;
+}
+
+.footer-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    background: #042457;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 70px 70px 0 0;
+}
+
+.footer-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 60px 180px;
+    color: #FFFFFF;
+}
+
+.footer-column {
+    width: 250px;
+}
+
+.footer-column h4 {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-column p, .footer-column li {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-about .footer-logo-text {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    width: 59px;
+    height: 53px;
+}
+
+.footer-brand-text {
+    font-family: 'Russo One', sans-serif;
+    font-size: 35px;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

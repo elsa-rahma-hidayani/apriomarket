@@ -12,8 +12,8 @@ body {
 
 /* Main container */
 .register-container {
-  display: flex;
-  min-height: 90vh;
+display: flex;
+  max-height: 90vh;
   background-color: #f7f9fc;
   border-radius: 20px;
   overflow: hidden;
@@ -24,14 +24,14 @@ body {
 /* Left side */
 .register-left {
   flex: 1;
-  background: #e5e7eb;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .register-image {
-  max-width: 80%;
+  max-width: 130%;
   height: auto;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .agree-terms a {
-  color: #6d28d9;
+  color: #206679;
   text-decoration: none;
 }
 
@@ -112,7 +112,7 @@ body {
 .register-button {
   width: 100%;
   padding: 14px;
-  background: #6d28d9;
+  background: #206679;
   color: white;
   border: none;
   border-radius: 10px;
@@ -122,7 +122,7 @@ body {
 }
 
 .register-button:hover {
-  background: #5b21b6;
+  background: #206679;
 }
 
 /* Footer */
@@ -133,6 +133,6 @@ body {
 }
 
 .register-footer a {
-  color: #6d28d9;
+  color: #206679;
   text-decoration: none;
 }
